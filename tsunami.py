@@ -17,8 +17,8 @@ class Tsunami:
 
         return { 'remainMargin': positionValues['_1']['value'], 'badDebt': positionValues['_2']['value'] }
 
-    def getPositionNotionalAndUnrealizedPnl(self, address):
-        position = requests.post(self.node + '/utils/script/evaluate/' + self.contractAddress, json = { "expr": "getPositionNotionalAndUnrealizedPnl(\"" + address + "\")" }).json()
+    def getPositionNotionalAndUnrealizedPnl(self, address, option = 1):
+        position = requests.post(self.node + '/utils/script/evaluate/' + self.contractAddress, json = { "expr": "getPositionNotionalAndUnrealizedPnl(\"" + address + "\", " + str(option) + ")" }).json()
         positionValues = position['result']['value']
 
         return { 'positionNotional': positionValues['_1']['value'], 'unrealizedPnl': positionValues['_2']['value'] }
